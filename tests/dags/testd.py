@@ -8,6 +8,6 @@ def test_docker():
     def load(order_data_dict: dict):
         from sklearn.datasets import load_iris
         data = load_iris()
-        return data.target_names
+        return {'target_names': data.target_names}
     load()
 testd = test_docker()
