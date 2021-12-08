@@ -9,5 +9,5 @@ def test_docker():
         from sklearn.datasets import load_iris
         data = load_iris()
         return data.target_names
-
+    load()
 testd = test_docker()
