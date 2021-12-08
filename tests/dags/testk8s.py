@@ -69,7 +69,7 @@ run = KubernetesPodOperator(
 )
 
 write_xcom = KubernetesPodOperator(
-    namespace='default',
+    namespace='airflow',
     image='alpine',
     cmds=["sh", "-c", "mkdir -p /airflow/xcom/;echo '{{ dag_run.conf.get('message', '[1,2,3,4]') if dag_run else '[1,2,3,4]' }}' > /airflow/xcom/return.json"],
     name="write-xcom",
