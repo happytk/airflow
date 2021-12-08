@@ -3,6 +3,7 @@ from airflow.models import DAG, Variable
 from airflow.operators.bash import BashOperator
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
+from airflow.operators.dummy_operator import DummyOperator
 
 args = {
     'start_date': datetime.utcnow(),
@@ -34,3 +35,7 @@ bash_task = BashOperator(
                  '{{ dag_run.conf["message"] if dag_run else "" }}" ',
     dag=dag,
 )
+
+start = DummyOperator(task_id="start", dag=dag)
+
+start >> run_this >> bash_task
