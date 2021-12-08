@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from kubernetes.client import models as k8s
 from airflow.models import DAG, Variable
 from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.bash import BashOperator
 from airflow.kubernetes.secret import Secret
 from airflow.kubernetes.pod import Resources
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
