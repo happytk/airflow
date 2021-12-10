@@ -52,10 +52,28 @@ configmaps = [
 
 start = DummyOperator(task_id="start", dag=dag)
 
+volume_mount = k8s.V1VolumeMount(
+    name='workspace-volume', mount_path='/home/ubuntu/workspace', sub_path=None,
+    # read_only=True
+)
+
+volume = k8s.V1Volume(
+    name='workspace-volume',
+    persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(claim_name='workspace-volume'),
+)
+
+volume_mounts = [
+    k8s.V1VolumeMount(mount_path='/workspace', name='workspace-volume', sub_path=None, read_only=True)
+]
+
+
+//docker pull harbor.accuinsight.net/accutuning/accutuning/modeler-common@sha256:8366e7d63ad086972790ae25fc37f48b4e8ed5bfb55479c0a7e3d7f6bde3cef1
 run = KubernetesPodOperator(
     task_id="kubernetespodoperator",
     namespace='airflow',
-    image='hello-world:latest',
+    image='harbor.accuinsight.net/accutuning/accutuning/modeler-common@sha256:8366e7d63ad086972790ae25fc37f48b4e8ed5bfb55479c0a7e3d7f6bde3cef1',
+    volume_mounts=volume_mounts,
+    # image='hello-world:latest',
     # secrets=[
     #     env
     # ],
