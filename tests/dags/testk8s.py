@@ -67,7 +67,7 @@ volume_mounts = [
 ]
 
 
-//docker pull harbor.accuinsight.net/accutuning/accutuning/modeler-common@sha256:8366e7d63ad086972790ae25fc37f48b4e8ed5bfb55479c0a7e3d7f6bde3cef1
+# docker pull harbor.accuinsight.net/accutuning/accutuning/modeler-common@sha256:8366e7d63ad086972790ae25fc37f48b4e8ed5bfb55479c0a7e3d7f6bde3cef1
 run = KubernetesPodOperator(
     task_id="kubernetespodoperator",
     namespace='airflow',
