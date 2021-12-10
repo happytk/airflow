@@ -52,14 +52,9 @@ configmaps = [
 
 start = DummyOperator(task_id="start", dag=dag)
 
-volume_mount = k8s.V1VolumeMount(
-    name='workspace-volume', mount_path='/home/ubuntu/workspace', sub_path=None,
-    # read_only=True
-)
-
 volume = k8s.V1Volume(
     name='workspace-volume',
-    persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(claim_name='workspace-volume-claim'),
+    persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(claim_name='workspace-volume-2-claim'),
 )
 
 volume_mounts = [
