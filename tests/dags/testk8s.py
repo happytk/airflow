@@ -82,6 +82,7 @@ run = KubernetesPodOperator(
     get_logs=True,
     resources=pod_resources,
     # env_from=configmaps,
+    env_vars={'ACCUTUNING_WORKSPACE': '/workspace'},
     dag=dag,
 )
 
