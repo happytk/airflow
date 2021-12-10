@@ -63,7 +63,10 @@ volume = k8s.V1Volume(
 )
 
 volume_mounts = [
-    k8s.V1VolumeMount(mount_path='/workspace', name='workspace-volume', sub_path=None, read_only=True)
+    k8s.V1VolumeMount(
+        mount_path='/workspace', name='workspace-volume', sub_path=None,
+        # read_only=True
+    )
 ]
 
 
@@ -72,6 +75,7 @@ run = KubernetesPodOperator(
     task_id="kubernetespodoperator",
     namespace='airflow',
     image='harbor.accuinsight.net/accutuning/accutuning/modeler-common@sha256:8366e7d63ad086972790ae25fc37f48b4e8ed5bfb55479c0a7e3d7f6bde3cef1',
+    volumes=[volume],
     volume_mounts=volume_mounts,
     # image='hello-world:latest',
     # secrets=[
