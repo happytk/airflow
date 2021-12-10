@@ -53,14 +53,14 @@ configmaps = [
 start = DummyOperator(task_id="start", dag=dag)
 
 volume = k8s.V1Volume(
-    name='workspace-volume',
-    persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(claim_name='workspace-volume-2-claim'),
+    name='workspace-3-volume',
+    persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(claim_name='workspace-volume-3-claim'),
 )
 
 volume_mounts = [
     k8s.V1VolumeMount(
-        mount_path='/workspace', name='workspace-volume', sub_path=None,
-        # read_only=True
+        mount_path='/workspace', name='workspace-3-volume', sub_path=None,
+        read_only=False
     )
 ]
 
