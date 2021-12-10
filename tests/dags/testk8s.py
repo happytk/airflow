@@ -55,7 +55,7 @@ start = DummyOperator(task_id="start", dag=dag)
 volume = k8s.V1Volume(
     name='workspace-3-volume',
     # persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(claim_name='workspace-volume-3-claim'),
-    host_path=k8s.V1HostPathVolumeSource(path='/home/ubuntu/workspace'),
+    host_path=k8s.V1HostPathVolumeSource(path='/workspace'),
 )
 
 volume_mounts = [
@@ -91,7 +91,7 @@ write_xcom = KubernetesPodOperator(
     namespace='airflow',
     image='alpine',
     # cmds=["sh", "-c", "mkdir -p /airflow/xcom/;echo '{{ dag_run.conf.get('message', '[1,2,3,4]') if dag_run else '[1,2,3,4]' }}' > /airflow/xcom/return.json"],
-    cmds=["sh", "-c", "mkdir -p /airflow/xcom/;ls -al /home/ubuntu/workspace > /airflow/xcom/return.json"],
+    cmds=["sh", "-c", "mkdir -p /airflow/xcom/;ls -al /workspace/* > /airflow/xcom/return.json"],
     name="write-xcom",
     do_xcom_push=True,
     volumes=[volume],
