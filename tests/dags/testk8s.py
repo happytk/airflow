@@ -59,7 +59,7 @@ volume_mount = k8s.V1VolumeMount(
 
 volume = k8s.V1Volume(
     name='workspace-volume',
-    persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(claim_name='workspace-volume'),
+    persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(claim_name='workspace-volume-claim'),
 )
 
 volume_mounts = [
