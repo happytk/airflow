@@ -54,7 +54,8 @@ start = DummyOperator(task_id="start", dag=dag)
 
 volume = k8s.V1Volume(
     name='workspace-3-volume',
-    persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(claim_name='workspace-volume-3-claim'),
+    # persistent_volume_claim=k8s.V1PersistentVolumeClaimVolumeSource(claim_name='workspace-volume-3-claim'),
+    host_path=k8s.V1HostPathVolumeSource(host_path='/home/ubuntu/workspace'),
 )
 
 volume_mounts = [
